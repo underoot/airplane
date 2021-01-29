@@ -70,7 +70,7 @@ const getAirportsCities = (flights: string[]) => {
       flight
     }));
 
-    return [origin.region.city, destination.region.city];
+    return [origin.position.region.city, destination.position.region.city];
   }));
 }
 
