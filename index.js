@@ -41,7 +41,7 @@ const getURL = (path, params) => {
 };
 const getFlights = async (la, lo) => {
     const feedResponse = await makeRequest(getURL('zones/fcgi/feed.js', {
-        bounds: `${la - 0.05},${la + 0.05},${lo - 0.05},${lo + 0.05}`,
+        bounds: `${la + 0.05},${la - 0.05},${lo - 0.05},${lo + 0.05}`,
         air: 1
     }));
     return Object.keys(feedResponse).filter(key => !['full_count', 'version'].includes(key));
@@ -51,7 +51,7 @@ const getAirportsCities = (flights) => {
         const { airport: { origin, destination } } = await makeRequest(getURL('clickhandler', {
             flight
         }));
-        return [origin.region.city, destination.region.city];
+        return [origin.position.region.city, destination.position.region.city];
     }));
 };
 const getCurrentFlightsCities = async (la, lo) => {
@@ -65,7 +65,7 @@ const options = {
     maximumAge: 0
 };
 const onGeolocationReceived = async ({ coords }) => {
-    Scene.showCities(await getCurrentFlightsCities(coords.latitude, coords.latitude));
+    Scene.showCities(await getCurrentFlightsCities(coords.latitude, coords.longitude));
 };
 const run = () => {
     Scene.showLoader();
@@ -78,5 +78,6 @@ const run = () => {
 setInterval(run, 30000);
 run();
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js');
+    navigator.serviceWorker.register('sw.js', { scope: '/airplane/' });
 }
+window.onfocus = run;
