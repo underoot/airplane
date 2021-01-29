@@ -4,7 +4,7 @@
   "background_color": "#87ceeb",
   "display": "standalone",
   "scope": "/",
-  "start_url": "https://192.168.8.103/?webmanifest",
+  "start_url": "https://underoot.github.io/airplane?webmanifest",
   "icons": [
     {
       "src": "/icon512.png",
