@@ -4,15 +4,15 @@
   "background_color": "#87ceeb",
   "display": "standalone",
   "scope": "/",
-  "start_url": "https://underoot.github.io/airplane?webmanifest",
+  "start_url": "https://underoot.dev/airplane?webmanifest",
   "icons": [
     {
-      "src": "/icon512.png",
+      "src": "/airplane/icon512.png",
       "sizes": "512x512",
       "type": "image/png"
     },
     {
-      "src": "/icon128.png",
+      "src": "/airplane/icon128.png",
       "sizes": "128x128",
       "type": "image/png"
     }
