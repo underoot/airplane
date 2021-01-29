@@ -57,7 +57,7 @@ const getURL = (path: string, params: object) => {
 
 const getFlights = async (la: number, lo: number) => {
   const feedResponse = await makeRequest(getURL('zones/fcgi/feed.js', {
-    bounds: `${la - 0.05},${la + 0.05},${lo - 0.05},${lo + 0.05}`,
+    bounds: `${la + 0.05},${la - 0.05},${lo - 0.05},${lo + 0.05}`,
     air: 1
   }));
 
@@ -88,7 +88,7 @@ const options: PositionOptions = {
 };
 
 const onGeolocationReceived = async ({ coords }: GeolocationPosition) => {
-  Scene.showCities(await getCurrentFlightsCities(coords.latitude, coords.latitude));
+  Scene.showCities(await getCurrentFlightsCities(coords.latitude, coords.longitude));
 }
 
 const run = () => {
